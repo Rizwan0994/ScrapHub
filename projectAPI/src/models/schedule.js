@@ -1,23 +1,24 @@
 const mongoose =require("mongoose");
 const UserSchema=mongoose.Schema({
-     username:{
+     nearestYard:{
         type:String,
         required:true
      },
-     password:{
+     sDate:{
         type:String,
         required:true
      },
-     contact:{
+     sTime:{
         type:String,
         required:true
      },  
-     address:{
+     itemDetails:{
         type:String,
         required:true
-     },
-     email:{
+     },  
+     userId:{
         type:String,
+        required:true
      }
 },{timestamps:true});
-module.exports=mongoose.model("User", UserSchema);
+module.exports=mongoose.model("PickupSchedule", UserSchema);

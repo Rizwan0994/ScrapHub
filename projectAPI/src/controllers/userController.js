@@ -2,12 +2,13 @@ const userModel=require("..//models/user");
 const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
 const SECRET_KEY=process.env.SECRET_KEY;
+
 const signup= async(req, res)=>{
 //Exisiting user Check
 //Hashed Password
 //Token Generate
 
-const {username,email,password,contact}=req.body;
+const {username,email,address,password,contact}=req.body;
 try{
     const existingUser=await userModel.findOne({contact:contact});
 if(existingUser)
@@ -19,6 +20,7 @@ const hashedPassword= await bcrypt.hash(password,10);
 const result= await userModel.create({
     username:username,
     email:email,
+    address,
     password:hashedPassword,
     contact:contact
 });
@@ -49,7 +51,7 @@ const signin= async(req,res)=>{
     if(!matchPassword){
         return res.status(400).json({message:"Invalid Credentaisl"});
     }
-    const token=jwt.sign({email:existingUser.contact,id:existingUser._id},SECRET_KEY);
+    const token=jwt.sign({contact:existingUser.contact,id:existingUser._id},SECRET_KEY);
     res.status(200).json({user:existingUser,token:token});
 
 }
@@ -60,4 +62,11 @@ catch(error){
 }
 }
 
-module.exports={signup,signin};
+//testing api
+const test=async(req,res)=>{
+    const user=await userModel.find({});
+    res.status(200).json({user});
+   
+}
+
+module.exports={signup,signin,test};
