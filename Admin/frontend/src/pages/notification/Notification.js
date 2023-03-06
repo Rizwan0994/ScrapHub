@@ -5,6 +5,7 @@ import useRedirectLoggedOutUser from "../../customHook/useRedirectLoggedOutUser"
 import { SET_NAME, SET_USER } from "../../redux/features/auth/authSlice";
 import { getUser1 } from "../../services/authService";
 import "./Notification.scss";
+import NewAddNotifyForm from "./NewAddNotifyForm";
 
 const Notification = () => {
    useRedirectLoggedOutUser("/login");
@@ -29,7 +30,8 @@ const Notification = () => {
    }, []);
 
   return (
-    <div className="notification --my2">
+    <>
+      <div className="notification --my2">
       {/* {isLoading && <SpinnerImg />} */}
       <>
         <p>Notification for PickupSchedule</p>
@@ -61,6 +63,20 @@ const Notification = () => {
         
       </>
     </div>
+    {/* 
+    .......................new card.........................
+    */}
+
+<div className="notification2 --my2">
+      {/* {isLoading && <SpinnerImg />} */}
+      <>
+      
+       {<NewAddNotifyForm/>}
+        
+      </>
+    </div>
+    </>
+  
   );
 };
 export default Notification;

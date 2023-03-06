@@ -1,7 +1,36 @@
 .notification {
   .card {
-    max-width: 700px;
+    max-width: 500px;
     display: flex;
+    justify-content: flex-start;
+
+    padding: 1rem 0;
+
+    span.notification-photo {
+      text-align: center;
+    }
+
+    img {
+      width: 100%;
+      max-width: 350px;
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
+    span.notification-data {
+      margin: 0 1rem;
+    }
+    span.notification-data > * {
+      border-top: 1px solid #ccc;
+      padding: 5px 0;
+    }
+  }
+}
+
+.notification2 {
+  .card {
+    max-width: 400px;
+    display: left;
+
     justify-content: flex-start;
 
     padding: 1rem 0;
