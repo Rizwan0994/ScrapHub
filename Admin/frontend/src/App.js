@@ -20,7 +20,7 @@ import EditProduct from "./pages/editProduct/EditProduct";
 import Profile from "./pages/profile/Profile";
 import EditProfile from "./pages/profile/EditProfile";
 import Contact from "./pages/contact/Contact";
-
+import Navigation from "./pages/notification/Notification";
 axios.defaults.withCredentials = true;
 
 function App() {
@@ -42,6 +42,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot" element={<Forgot />} />
+         {/* <Route path="/navigation" element={<Navigation />} />  */}
         <Route path="/resetpassword/:resetToken" element={<Reset />} />
 
         <Route
@@ -94,6 +95,18 @@ function App() {
             </Sidebar>
           }
         />
+
+<Route
+          path="/navigation"
+          element={
+            <Sidebar>
+              <Layout>
+                <Navigation />
+              </Layout>
+            </Sidebar>
+          }
+        />
+
         <Route
           path="/edit-profile"
           element={
@@ -118,5 +131,4 @@ function App() {
     </BrowserRouter>
   );
 }
-
 export default App;

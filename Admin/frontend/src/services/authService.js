@@ -40,6 +40,7 @@ export const loginUser = async (userData) => {
     if (response.statusText === "OK") {
       toast.success("Login Successful...");
     }
+    console.log("1",response.data);
     return response.data;
   } catch (error) {
     const message =
@@ -123,6 +124,22 @@ export const getUser = async () => {
     toast.error(message);
   }
 };
+// Get Notification regarding to Schedule_pick
+
+ export const getUser1 = async () => {
+   try {
+     const response = await axios.get(`${BACKEND_URL}/api/users/getUser1`);
+     console.log("12345",response.data);
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+   }
+ };
+ 
 // Update Profile
 export const updateUser = async (formData) => {
   try {

@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { selectName, SET_LOGIN } from "../../redux/features/auth/authSlice";
 import { logoutUser } from "../../services/authService";
-
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -14,6 +14,11 @@ const Header = () => {
     await dispatch(SET_LOGIN(false));
     navigate("/login");
   };
+  
+   const navigate1 = () => {
+   navigate("/Navigation ");
+   { <Link to="/Navigation">Navigation</Link> }
+   };
 
   return (
     <div className="--pad header">
@@ -24,6 +29,9 @@ const Header = () => {
         </h3>
         <button onClick={logout} className="--btn --btn-danger">
           Logout
+        </button>
+        <button  onClick={navigate1}className="--btn --btn-danger">
+          Notification
         </button>
       </div>
       <hr />

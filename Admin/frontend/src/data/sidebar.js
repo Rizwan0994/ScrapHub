@@ -31,6 +31,11 @@ const menu = [
     icon: <FaCommentAlt />,
     path: "/contact-us",
   },
+  {
+    title: "Registered Company",
+    path: "/contact-us",
+  },
+
 ];
 
 export default menu;

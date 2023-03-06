@@ -1,10 +1,12 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const Notifications = require("../models/notificationModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Token = require("../models/tokenModel");
 const crypto = require("crypto");
 const sendEmail = require("../utils/sendEmail");
+const errorHandler = require("../middleWare/errorMiddleware");
 
 // Generate Token
 const generateToken = (id) => {
@@ -132,7 +134,7 @@ const logout = asyncHandler(async (req, res) => {
   return res.status(200).json({ message: "Successfully Logged Out" });
 });
 
-// Get User Data
+//Get User Data
 const getUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
@@ -151,6 +153,29 @@ const getUser = asyncHandler(async (req, res) => {
     throw new Error("User Not Found");
   }
 });
+
+// Get user notification schdule
+
+ const getUser1 = asyncHandler(async (req, res) => {
+   //const user = await User.findOne({ email:"f190948@cfd.nu.edu.pk"});
+   //const user = await Notifications.findOne({_id:"63f1334294e0853a8773f150"});
+   const notification = await Notifications.find({});
+   if (notification) {
+    res.status(200).json(
+      notification
+     );
+    // const { _id, nearestYard
+    //   , 
+    //   sDate, 
+    //   sTime, 
+    //   itemDetails, userId
+    // } = user;
+    
+   } else {
+     res.status(400);
+    throw new Error("User Notification not  Found");
+  }
+ });
 
 // Get Login Status
 const loginStatus = asyncHandler(async (req, res) => {
@@ -319,6 +344,7 @@ module.exports = {
   getUser,
   loginStatus,
   updateUser,
+  getUser1,
   changePassword,
   forgotPassword,
   resetPassword,

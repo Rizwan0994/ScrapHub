@@ -22,16 +22,17 @@ const Home = () => {
           <ShowOnLogout>
             <li>
               <button className="--btn --btn-primary">
-                <Link to="/login">Login</Link>
+                { <Link to="/login">Login</Link> }
               </button>
             </li>
           </ShowOnLogout>
           <ShowOnLogin>
-            <li>
+            { <li>
               <button className="--btn --btn-primary">
                 <Link to="/dashboard">Dashboard</Link>
               </button>
-            </li>
+            </li> }
+
           </ShowOnLogin>
         </ul>
       </nav>
