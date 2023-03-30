@@ -8,6 +8,8 @@ import Card from "../../card/Card";
 import { SpinnerImg } from "../../loader/Loader";
 import "./ProductDetail.scss";
 import DOMPurify from "dompurify";
+import jsPDF from 'jspdf';
+
 
 const ProductDetail = () => {
   useRedirectLoggedOutUser("/login");
@@ -37,6 +39,24 @@ const ProductDetail = () => {
     }
   }, [isLoggedIn, isError, message, dispatch]);
 
+  const handleDownload = () => {
+    // Create a new PDF document
+    const doc = new jsPDF();
+  
+    // Add content to the document
+    doc.text('Product Detail Report', 10, 10);
+    doc.text(`Product Name: ${product.name}`, 10, 20);
+    doc.text(`SKU: ${product.sku}`, 10, 30);
+    doc.text(`Category: ${product.category}`, 10, 40);
+    doc.text(`Price: ${product.price}`, 10, 50);
+    doc.text(`Quantity in stock: ${product.quantity}`, 10, 60);
+    doc.text(`Total Value in stock : ${product.price * product.quantity}`, 10, 70);
+    // Add more content here
+  
+    // Download the PDF document
+    doc.save('product_detail_report.pdf');
+  };
+  
   return (
     <div className="product-detail">
       <h3 className="--mt">Product Detail</h3>
@@ -90,8 +110,12 @@ const ProductDetail = () => {
             <code className="--color-dark">
               Last Updated: {product.updatedAt.toLocaleString("en-US")}
             </code>
+        
+            <button onClick={handleDownload}>Download Report</button>
+
+         
           </div>
-        )}
+         )}
       </Card>
     </div>
   );

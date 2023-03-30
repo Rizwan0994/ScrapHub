@@ -7,6 +7,7 @@ import Forgot from "./pages/auth/Forgot";
 import Reset from "./pages/auth/Reset";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Sidebar from "./components/sidebar/Sidebar";
+import CollectorForm from "./pages/addCollectors/CollectorForm";
 import Layout from "./components/layout/Layout";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
@@ -21,6 +22,7 @@ import Profile from "./pages/profile/Profile";
 import EditProfile from "./pages/profile/EditProfile";
 import Contact from "./pages/contact/Contact";
 import Navigation from "./pages/notification/Notification";
+
 axios.defaults.withCredentials = true;
 
 function App() {
@@ -123,6 +125,16 @@ function App() {
             <Sidebar>
               <Layout>
                 <Contact />
+              </Layout>
+            </Sidebar>
+          }
+        />
+              <Route
+          path="/add-collector"
+          element={
+            <Sidebar>
+              <Layout>
+                <CollectorForm />
               </Layout>
             </Sidebar>
           }

@@ -32,8 +32,8 @@ const menu = [
     path: "/contact-us",
   },
   {
-    title: "Registered Company",
-    path: "/contact-us",
+    title: "Registered Collector",
+    path: "/add-collector",
   },
 
 ];

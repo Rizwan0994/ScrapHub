@@ -1,0 +1,32 @@
+.collector-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ddd;
+  }
+  
+  .collector-list-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .collector-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .collector-item {
+    margin-bottom: 20px;
+  }
+  
+  .collector-item p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .collector-item p strong {
+    font-weight: bold;
+  }
+  

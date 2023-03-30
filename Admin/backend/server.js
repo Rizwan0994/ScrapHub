@@ -11,7 +11,7 @@ const errorHandler = require("./middleWare/errorMiddleware");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const notifycollector = require("./models/notifycollector");
-
+const collectorRoutes = require("./routes/collectorRoutes");
 const app = express();
 
 // Middlewares
@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://pinvent-app.vercel.app"],
+    origin: ["http://localhost:3000"],
     credentials: true,
   })
 );
@@ -33,6 +33,7 @@ app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/contactus", contactRoute);
 app.use("/api/notifyController",notifyCollectorRoute)
+app.use("/api/collectors", collectorRoutes);
 
 // Routes
 app.get("/", (req, res) => {
