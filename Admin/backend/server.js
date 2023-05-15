@@ -12,6 +12,7 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const notifycollector = require("./models/notifycollector");
 const collectorRoutes = require("./routes/collectorRoutes");
+const notifyCollectorsRouter = require("./routes/sendNotificationRoute");
 const app = express();
 
 // Middlewares
@@ -34,6 +35,7 @@ app.use("/api/products", productRoute);
 app.use("/api/contactus", contactRoute);
 app.use("/api/notifyController",notifyCollectorRoute)
 app.use("/api/collectors", collectorRoutes);
+app.use("/api/notifycollectors", notifyCollectorsRouter);
 
 // Routes
 app.get("/", (req, res) => {

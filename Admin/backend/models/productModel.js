@@ -40,6 +40,7 @@ const productSchema = mongoose.Schema(
     },
     image: {
       type: Object,
+      required: [true, "Please add a image"],
       default: {},
     },
   },

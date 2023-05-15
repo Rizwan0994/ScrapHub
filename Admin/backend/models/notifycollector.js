@@ -3,35 +3,35 @@ const mongoose = require('mongoose');
 const pickupSchema = new mongoose.Schema({
   contact: {
     type: String,
-    required: true
+    // required: true
   },
   Address: {
     type: String,
-    required: true
+    // required: true
   },
   nearestYard: {
     type: String,
-    required: true
+    // required: true
   },
   sDate: {
     type: Date,
-    required: true
+    // required: true
   },
   sTime: {
     type: String,
-    required: true
+    // required: true
   },
   itemDetails: {
     type: String,
-    required: true
+    // required: true
   },
   collectorYard: {
     type: String,
-    required: true
+    // required: true
   },
   collectorId: {
     type: String,
-    required: true
+    // required: true
   }
 });
 
