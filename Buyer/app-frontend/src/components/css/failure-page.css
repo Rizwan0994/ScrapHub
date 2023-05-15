@@ -1,0 +1,24 @@
+.failure-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .failure-emoji {
+    font-size: 5rem;
+  }
+  
+  .failure-message {
+    font-size: 2rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .failure-instruction {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
