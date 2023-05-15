@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lead } from './Lead';
+import Lead  from './Lead';
 
 export class Dashboard extends React.Component {
     constructor(props) {
