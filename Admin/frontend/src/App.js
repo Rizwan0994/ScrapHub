@@ -21,8 +21,8 @@ import EditProduct from "./pages/editProduct/EditProduct";
 import Profile from "./pages/profile/Profile";
 import EditProfile from "./pages/profile/EditProfile";
 import Contact from "./pages/contact/Contact";
+import CollectorList from "./pages/addCollectors/CollectorList";
 import Navigation from "./pages/notification/Notification";
-
 axios.defaults.withCredentials = true;
 
 function App() {
@@ -135,6 +135,16 @@ function App() {
             <Sidebar>
               <Layout>
                 <CollectorForm />
+              </Layout>
+            </Sidebar>
+          }
+        />
+         <Route
+          path="/collector-list"
+          element={
+            <Sidebar>
+              <Layout>
+                <CollectorList />
               </Layout>
             </Sidebar>
           }

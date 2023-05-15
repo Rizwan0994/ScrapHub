@@ -20,26 +20,36 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [formData, setformData] = useState(initialState);
+  const [formData, setFormData] = useState(initialState);
   const { name, email, password, password2 } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setformData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: value });
   };
 
   const register = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !password) {
-      return toast.error("All fields are required");
+    // Validate name
+    const nameRegex = /^[a-zA-Z ]*$/;
+    if (!nameRegex.test(name)) {
+      return toast.error("Name should not contain special characters");
     }
-    if (password.length < 6) {
-      return toast.error("Passwords must be up to 6 characters");
+
+    // Validate password length
+    const passwordLengthRegex = /^.{8,}$/;
+    if (!passwordLengthRegex.test(password)) {
+      return toast.error("Password should be at least 8 characters long");
     }
-    if (!validateEmail(email)) {
-      return toast.error("Please enter a valid email");
+
+    // Validate email format
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    if (!emailRegex.test(email)) {
+      return toast.error("Please enter a valid email address");
     }
+
+    // Confirm password
     if (password !== password2) {
       return toast.error("Passwords do not match");
     }

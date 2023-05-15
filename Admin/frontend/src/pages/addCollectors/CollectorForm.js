@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from 'react';
-import CollectorList from "./CollectorList";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -8,7 +8,11 @@ const CollectorForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const [notification, setNotification] = useState('');
+    const navigate = useNavigate();
 
+    function handleClick() {
+      navigate("/collector-list");
+    }
     useEffect(() => {
         if (notification) {
           window.alert(notification);
@@ -37,101 +41,114 @@ const CollectorForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-group">
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          className={`form-control ${errors.name ? "is-invalid" : ""}`}
-          placeholder="Enter name"
-          {...register("name", { required: true })}
-        />
-        {errors.name && (
-          <div className="invalid-feedback">Name is required</div>
-        )}
-      </div>
-      <div className="form-group">
-        <label htmlFor="contact">Contact</label>
-        <input
-          type="tel"
-          className={`form-control ${errors.contact ? "is-invalid" : ""}`}
-          placeholder="Enter contact"
-          {...register("contact", {
-            required: true,
-            pattern: /^\d{10}$/,
-          })}
-        />
-        {errors.contact && errors.contact.type === "required" && (
-          <div className="invalid-feedback">Contact is required</div>
-        )}
-        {errors.contact && errors.contact.type === "pattern" && (
-          <div className="invalid-feedback">Invalid contact format</div>
-        )}
-      </div>
-      <div className="form-group">
-        <label htmlFor="address">Address</label>
-        <input
-          type="text"
-          className={`form-control ${errors.address ? "is-invalid" : ""}`}
-          placeholder="Enter address"
-          {...register("address", { required: true })}
-        />
-        {errors.address && (
-          <div className="invalid-feedback">Address is required</div>
-        )}
-      </div>
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
-        <input
-          type="text"
-          className={`form-control ${errors.address ? "is-invalid" : ""}`}
-          placeholder="Enter Password"
-          {...register("password", { required: true })}
-        />
-        {errors.address && (
-          <div className="invalid-feedback">Address is required</div>
-        )}
-      </div>
-      <div className="form-group">
-        <label htmlFor="pickupArea">Pickup Area</label>
-        <select
-          className={`form-control ${errors.pickupArea ? "is-invalid" : ""}`}
-          {...register("pickupArea", { required: true })}
-        >
-          <option value="">Select pickup area</option>
-          <option value="FaisalabadSH1">FaisalabadSH1</option>
-          <option value="FaisalabadSH2">FaisalabadSH2</option>
-          <option value="FaisalabadSH3">FaisalabadSH3</option>
-        </select>
-        {errors.pickupArea && (
-          <div className="invalid-feedback">Pickup area is required</div>
-        )}
-      </div>
-      <div className="form-group">
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          className={`form-control ${errors.email ? "is-invalid" : ""}`}
-          placeholder="Enter email"
-          {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-        />
-        {errors.email && errors.email.type === "required" && (
-          <div className="invalid-feedback">Email is required</div>
-        )}
-        {errors.email && errors.email.type === "pattern" && (
-          <div className="invalid-feedback">Invalid email format</div>
-        )}
-      </div>
-      {/* <div className="form-group">
-        <label htmlFor="color">Color</label>
-        <HexColorPicker color={color} onChange={setColor} />
-      </div> */}
-      <button type="submit" className="btn btn-primary">
-    Add Collector
-  </button>
-  <button type="submit" className="btn btn-primary">
-    {<CollectorList/>}
-  </button>
-</form>
+    <div className="form-group">
+      <label htmlFor="name">Name</label>
+      <input
+  type="text"
+  className={`form-control`}
+  placeholder="Enter name"
+  {...register("name", { pattern: /^[a-zA-Z0-9\s]+$/ })}
+required/>
+
+      {errors.name && (
+        <div className="invalid-feedback"><h4>invaid input</h4></div>
+      )}
+    </div>
+    <div className="form-group">
+      <label htmlFor="contact">Contact</label>
+      <input
+        type="tel"
+        className={`form-control`}
+        placeholder="Enter contact"
+        {...register("contact", {
+          pattern: /^\d{11}$/,
+        })}
+        required/>
+      {errors.contact && errors.contact.type === "required" && (
+        <div className="invalid-feedback"><h4>Contact is required</h4></div>
+      )}
+      {errors.contact && errors.contact.type === "pattern" && (
+        <div className="invalid-feedback"><h4>Invalid contact format</h4></div>
+      )}
+    </div>
+    <div className="form-group">
+      <label htmlFor="address">Address</label>
+      <input
+        type="text"
+        className={`form-control`}
+        placeholder="Enter address"
+        {...register("address")}
+        required/>
+      {errors.address && (
+        <div className="invalid-feedback"><h4>Address is required</h4></div>
+      )}
+    </div>
+    <div className="form-group">
+      <label htmlFor="password">Password</label>
+      <input
+  type="password"
+  className={`form-control`}
+  placeholder="Enter Password"
+  {...register("password", { required: true, minLength: 8 })}
+/>
+{errors.password && (
+  <div className="invalid-feedback">
+    <h4>Password must be at least 8 characters long</h4>
+  </div>
+)}
+
+    </div>
+    <div className="form-group">
+      <label htmlFor="pickupArea">Pickup Area</label>
+      <select
+        className={`form-control`}
+        {...register("pickupArea", { required: true })}
+      >
+        <option value="">Select pickup area</option>
+        <option value="FaisalabadSH1">FaisalabadSH1</option>
+        <option value="FaisalabadSH2">FaisalabadSH2</option>
+        <option value="FaisalabadSH3">FaisalabadSH3</option>
+      </select>
+      {errors.pickupArea && (
+        <div className="invalid-feedback"><h4>Pickup area is required</h4></div>
+      )}
+    </div>
+    <div className="form-group">
+      <label htmlFor="email">Email</label>
+      <input
+        type="email"
+        className={`form-control`}
+        placeholder="Enter email"
+        {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+      />
+      {errors.email && errors.email.type === "required" && (
+        <div className="invalid-feedback"><h4>Email is required</h4></div>
+      )}
+      {errors.email && errors.email.type === "pattern" && (
+        <div className="invalid-feedback"><h4>Invalid email format</h4></div>
+      )}
+    </div>
+    <button type="submit" className="btn btn-primary">
+      Add Collector
+    </button>
+    
+    <button 
+  onClick={handleClick} 
+  style={{
+    padding: "10px",
+    marginLeft:"5px",
+    background: "#0069d9",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    transition: "background-color 0.2s"
+  }}
+>
+  Go to Collector List
+</button>
+  </form>
+  
 );
 };
 

@@ -24,7 +24,7 @@ function CollectorList() {
             <p><strong>Address:</strong> {collector.address}</p>
             <p><strong>Pickup Area:</strong> {collector.pickupArea}</p>
             <p><strong>Email:</strong> {collector.email}</p>
-            <p><strong>Password:</strong> {collector.password}</p>
+            <p><strong>Password:</strong> <span className="password">{collector.password}</span></p>
           </li>
         ))}
       </ul>

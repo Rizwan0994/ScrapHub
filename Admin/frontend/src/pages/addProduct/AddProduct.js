@@ -20,8 +20,9 @@ const AddProduct = () => {
   const navigate = useNavigate();
   const [product, setProduct] = useState(initialState);
   const [productImage, setProductImage] = useState("");
-  const [imagePreview, setImagePreview] = useState(null);
+   const [imagePreview, setImagePreview] = useState(null);
   const [description, setDescription] = useState("");
+  const [errors, setErrors] = useState({}); // Track form validation errors
 
   const isLoading = useSelector(selectIsLoading);
 
@@ -44,22 +45,61 @@ const AddProduct = () => {
     return sku;
   };
 
+  const validateForm = () => {
+    let errors = false;
+  
+    const nameRegex = /^[a-zA-Z0-9\s]+$/; // Regular expression to allow only alphanumeric characters and spaces
+    if (!name) {
+      alert("Name is required");
+      errors = true;
+    } else if (!nameRegex.test(name)) {
+      alert("Name can only contain letters, numbers, and spaces");
+      errors = true;
+    }
+  
+    if (!category) {
+      alert("Category is required");
+      errors = true;
+    }
+  
+    if (!quantity) {
+      alert("Quantity is required");
+      errors = true;
+    } else if (isNaN(quantity) || quantity <= 0) {
+      alert("Quantity must be a positive number");
+      errors = true;
+    }
+  
+    const priceRegex = /^[0-9]+(\.[0-9]{1,2})?$/; // Regular expression to allow only positive numbers with up to 2 decimal places
+    if (!price) {
+      alert("Price is required");
+      errors = true;
+    } else if (!priceRegex.test(price)) {
+      alert("Price must be a positive number");
+      errors = true;
+    }
+  
+    return !errors; // Returns true if there are no errors
+  };
+  
+
   const saveProduct = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("sku", generateKSKU(category));
-    formData.append("category", category);
-    formData.append("quantity", Number(quantity));
-    formData.append("price", price);
-    formData.append("description", description);
-    formData.append("image", productImage);
 
-    console.log(...formData);
+    if (validateForm()) {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("sku", generateKSKU(category));
+      formData.append("category", category);
+      formData.append("quantity", Number(quantity));
+      formData.append("price", price);
+      formData.append("description", description);
+      formData.append("image",productImage);
 
-    await dispatch(createProduct(formData));
+      await dispatch(createProduct(formData));
 
-    navigate("/dashboard");
+      navigate("/dashboard");
+    }
   };
 
   return (
@@ -69,8 +109,9 @@ const AddProduct = () => {
       <ProductForm
         product={product}
         productImage={productImage}
-        imagePreview={imagePreview}
+         imagePreview={imagePreview}
         description={description}
+        errors={errors} // Pass the errors to the ProductForm component
         setDescription={setDescription}
         handleInputChange={handleInputChange}
         handleImageChange={handleImageChange}

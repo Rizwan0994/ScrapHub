@@ -42,17 +42,46 @@ const ProductDetail = () => {
   const handleDownload = () => {
     // Create a new PDF document
     const doc = new jsPDF();
-  
+    
+    const title = 'SCRAPHUB: PRODUCT DETAIL REPORT';
+    const xPos = 10; // X position of the text
+    const yPos = 20; // Y position of the text
+    const maxWidth = doc.internal.pageSize.width - xPos * 2; // Maximum width of the text
+      
+    doc.text(title, xPos, yPos, { maxWidth });
+    
+    // Set the logo
+    const logoUrl = 'https://i.postimg.cc/NGJykchj/shopee-logo-31405.png';
+    doc.addImage(logoUrl, 'PNG', 150, 25, 25, 25);
+    
+    // Set the margin manually using setFontSize method
+    doc.setFontSize(12);
+    const pageWidth = doc.internal.pageSize.width;
+    const pageHeight = doc.internal.pageSize.height;
+    const margin = 35;
+    const x = margin;
+    let y = 70;
+    
     // Add content to the document
-    doc.text('Product Detail Report', 10, 10);
-    doc.text(`Product Name: ${product.name}`, 10, 20);
-    doc.text(`SKU: ${product.sku}`, 10, 30);
-    doc.text(`Category: ${product.category}`, 10, 40);
-    doc.text(`Price: ${product.price}`, 10, 50);
-    doc.text(`Quantity in stock: ${product.quantity}`, 10, 60);
-    doc.text(`Total Value in stock : ${product.price * product.quantity}`, 10, 70);
-    // Add more content here
-  
+    doc.text(`Product Name: ${product.name}`, x, y);
+    y += 10;
+    doc.text(`SKU: ${product.sku}`, x, y);
+    y += 10;
+    doc.text(`Category: ${product.category}`, x, y);
+    y += 10;
+    doc.text(`Price: ${product.price}`, x, y);
+    y += 10;
+    doc.text(`Quantity in stock: ${product.quantity}`, x, y);
+    y += 10;
+    doc.text(`Total Value in stock : ${product.price * product.quantity}`, x, y);
+    
+    // Add signature and date
+    const adminSignature = "scraphubadmin";
+    const currentDate = new Date().toLocaleDateString();
+    y = pageHeight - margin;
+    doc.text(`Signature: ${adminSignature}`, x, y - 5);
+    doc.text(`Date: ${currentDate}`, pageWidth - margin - 50, y - 5);
+    
     // Download the PDF document
     doc.save('product_detail_report.pdf');
   };

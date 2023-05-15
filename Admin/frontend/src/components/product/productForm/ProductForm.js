@@ -2,7 +2,6 @@ import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Card from "../../card/Card";
-
 import "./ProductForm.scss";
 
 const ProductForm = ({
@@ -15,11 +14,12 @@ const ProductForm = ({
   handleImageChange,
   saveProduct,
 }) => {
+  
   return (
     <div className="add-product">
       <Card cardClass={"card"}>
         <form onSubmit={saveProduct}>
-          <Card cardClass={"group"}>
+          {/* { <Card cardClass={"group"}>
             <label>Product Image</label>
             <code className="--color-dark">
               Supported Formats: jpg, jpeg, png
@@ -35,9 +35,9 @@ const ProductForm = ({
                 <img src={imagePreview} alt="product" />
               </div>
             ) : (
-              <p>No image set for this poduct.</p>
+              <p>No image set for this product.</p>
             )}
-          </Card>
+          </Card> } */}
           <label>Product Name:</label>
           <input
             type="text"
@@ -48,13 +48,18 @@ const ProductForm = ({
           />
 
           <label>Product Category:</label>
-          <input
-            type="text"
-            placeholder="Product Category"
+          <select
             name="category"
             value={product?.category}
             onChange={handleInputChange}
-          />
+          >
+            <option value="">Select category</option>
+            <option value="Steel">Steel</option>
+            <option value="Iron">Iron</option>
+            <option value="Plastic">Plastic</option>
+            <option value="Aluminum">Aluminum</option>
+            {/* Add more options as needed */}
+          </select>
 
           <label>Product Price:</label>
           <input
@@ -130,5 +135,4 @@ ProductForm.formats = [
   "code-block",
   "align",
 ];
-
 export default ProductForm;
