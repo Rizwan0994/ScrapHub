@@ -23,10 +23,12 @@
 }
 
 * {
+  
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  
 }
 
 html {
@@ -35,7 +37,7 @@ html {
 
 body {
   font-family: var(--font-family);
-  background: #eee;
+  background-color: #a5c6aa;
 }
 
 section {
@@ -197,7 +199,7 @@ p {
   color: #007bff;
 }
 .--color-danger {
-  color: orangered;
+  color: #0c1011;
 }
 .--color-success {
   color: #28a745;
@@ -328,7 +330,7 @@ p {
 }
 .--btn-danger {
   color: #fff;
-  background: orangered;
+  background:   #0c1011;;
 }
 
 .--btn-success {

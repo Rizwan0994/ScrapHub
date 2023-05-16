@@ -1,5 +1,5 @@
 .home {
-  background-color: #030b6b;
+  background-color: #a5c6aa;
   min-height: 100vh;
 
   & nav {
@@ -33,10 +33,12 @@
 .hero-text {
   width: 50%;
   & > * {
-    color: #fff;
-    margin-bottom: 2rem;
+    color: #0c1011;
+  
+    margin-bottom: 4rem;
+    margin-right: 4rem;
   }
-  & > h2 span {
+  & > h1 span {
     display: block;
   }
   & .hero-buttons a {
@@ -45,6 +47,12 @@
 }
 .hero-image {
   width: 50%;
+
+}
+.xbtn{
+  color: #fff;
+  background: #009172;
+  margin-left: 20px;
 }
 @media screen and (max-width: 600px) {
   .hero {

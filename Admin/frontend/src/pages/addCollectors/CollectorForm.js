@@ -128,7 +128,16 @@ required/>
         <div className="invalid-feedback"><h4>Invalid email format</h4></div>
       )}
     </div>
-    <button type="submit" className="btn btn-primary">
+    <button type="submit" style={{
+    padding: "10px",
+    marginLeft:"5px",
+    background: "#0069d9",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    transition: "background-color 0.2s"
+  }}>
       Add Collector
     </button>
     

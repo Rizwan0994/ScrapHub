@@ -9,8 +9,15 @@ const Home = () => {
   return (
     <div className="home">
       <nav className="container --flex-between ">
-        <div className="logo">
-          <RiProductHuntLine size={35} />
+        <div className="">
+          {/* <RiProductHuntLine size={35} /> */}
+        
+          <div >
+          <img src="https://i.postimg.cc/fLS6VdNv/Green-Black-Sustainable-Energy-Solutions-Logo-removebg-preview.png" alt="logo" style={{ position: 'absolute', top: 0, left: 0, height: '270px', margin: '10px', }} />
+
+    </div>
+
+          
         </div>
 
         <ul className="home-links">
@@ -28,7 +35,7 @@ const Home = () => {
           </ShowOnLogout>
           <ShowOnLogin>
             { <li>
-              <button className="--btn --btn-primary">
+              <button className="--btn xbtn">
                 <Link to="/dashboard">Dashboard</Link>
               </button>
             </li> }
@@ -39,38 +46,21 @@ const Home = () => {
       {/* HERO SECTION */}
       <section className="container hero">
         <div className="hero-text">
-          <h2>Inventory {"&"} Stock Management Solution</h2>
+          <h1>ScrapHub, A Digital Market Place For Scrap Sales Purchase</h1>
           <p>
-            Inventory system to control and manage proucts in the warehouse in
-            real timeand integrated to make it easier to develop your business.
+          Develop digital platform where people can come to sell and buy the scrap online.
+          Collect and recycle the scrap and keep this valuable material in the loop.
           </p>
-          <div className="hero-buttons">
-            <button className="--btn --btn-secondary">
-              <Link to="/dashboard">Free Trial 1 Month</Link>
-            </button>
-          </div>
-          <div className="--flex-start">
-            <NumberText num="14K" text="Brand Owners" />
-            <NumberText num="23K" text="Active Users" />
-            <NumberText num="500+" text="Partners" />
-          </div>
         </div>
 
         <div className="hero-image">
-          <img src={heroImg} alt="Inventory" />
+          <img src={"https://i.postimg.cc/N0j6K2bb/pexels-photo-9324359-removebg-preview.png"} alt="Inventory" />
         </div>
       </section>
     </div>
   );
 };
 
-const NumberText = ({ num, text }) => {
-  return (
-    <div className="--mr">
-      <h3 className="--color-white">{num}</h3>
-      <p className="--color-white">{text}</p>
-    </div>
-  );
-};
+
 
 export default Home;
