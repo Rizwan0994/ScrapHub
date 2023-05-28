@@ -12,8 +12,8 @@ function App() {
     <div className="App">
     <Routes>
       <Route path="/payment"  element={<PaymentPage/>} />
-      <Route path="/"  element={<ProductPage/>} />
-      <Route path="/main"  element={<MainPage/>} />
+      <Route path="/product"  element={<ProductPage/>} />
+      <Route path="/"  element={<MainPage/>} />
       <Route path="/feedback"  element={<FeedbackForm/>} />
       <Route path="/success"  element={<SuccessPage/>} />
       <Route path="/failure"  element={<FailurePage/>} />

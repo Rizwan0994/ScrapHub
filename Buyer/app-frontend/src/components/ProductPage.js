@@ -84,38 +84,83 @@ import "./ProductPageStyle.css";
 
 function ProductPage() {
   const [products, setProducts] = useState([]);
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   useEffect(() => {
     async function fetchProducts() {
-      const response = await fetch('https://apitestregs.onrender.com/api/products');
-      const data = await response.json();
-      setProducts(data);
+      try {
+        const response = await fetch('https://apitestregs.onrender.com/api/products');
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error(error);
+        // Handle the error, e.g., show an error message or retry the request
+      }
     }
 
     fetchProducts();
   }, []);
 
+  const handleProductSelect = (productId) => {
+    if (selectedProducts.includes(productId)) {
+      setSelectedProducts(selectedProducts.filter((id) => id !== productId));
+    } else {
+      setSelectedProducts([...selectedProducts, productId]);
+    }
+  };
+
+  const handleBuySelected = () => {
+    const selectedProductsData = products.filter((product) =>
+      selectedProducts.includes(product._id)
+    );
+    setSelectedProducts([]);
+    window.localStorage.setItem(
+      "selectedProducts",
+      JSON.stringify(selectedProductsData)
+    );
+  };
+  const divStyle = {
+   display:'flex',
+    color: '#1f2d3d',
+    padding: '10px',
+    borderRadius: '5px',
+  };
+
   return (
     <>
-      <section>
-      
-        <h1>Latest Scrap Product</h1>
+      <section className="product-page">
+        <h1 style={divStyle }>Available Scrap Product</h1>
         <div className="list">
           {products.map((product) => (
             <div className="product" key={product._id}>
-              <img src={"https://i.postimg.cc/mZ8C1Sb3/pngegg.png"} alt={"product.name"} />
+              {/* <img src={"https://i.postimg.cc/mZ8C1Sb3/pngegg.png"} alt={"product.name"} /> */}
+              <h2>{product.name}</h2>
               <div>
                 <h2>{product.name}</h2>
                 <p className="price">${product.price.toFixed(2)}</p>
                 <p className="descr">{product.description}</p>
                 <br />
-                <Link to={`/payment?name=${product.name}&price=${product.price}`}>
+                <Link
+                  to={`/payment?name=${product.name}&price=${product.price}`}
+                  onClick={() => handleProductSelect(product._id)}
+                >
                   <p>Buy Now</p>
                 </Link>
+                <input
+                  type="checkbox"
+                  checked={selectedProducts.includes(product._id)}
+                  onChange={() => handleProductSelect(product._id)}
+                />
               </div>
             </div>
           ))}
         </div>
+        {selectedProducts.length > 0 && (
+          <button onClick={handleBuySelected}>Buy Selected</button>
+        )}
       </section>
       <a href="/feedback">Wanna give feedback about our services?</a>
     </>

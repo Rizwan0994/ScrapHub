@@ -70,7 +70,7 @@ function Mainpage() {
                     <span className="light"><i className="ri-sun-line"></i></span>
                      </div>
 
-                    <a href="/"> <button className="btn btn-primary nav-btn" >
+                    <a href="/product"> <button className="btn btn-primary nav-btn" >
                       Buy Recyclables
                     </button></a>
                   </div>
@@ -99,12 +99,12 @@ function Mainpage() {
                   <button className="btn btn-primary home-btn home-btn1" href="#">
                     Explore<i className="bi bi-arrow-right"></i>
                   </button>
-                  <button
+                <a href="product">  <button
                     className="btn btn-outline-primary home-btn home-btn home-btn2"
                     href=""
                   >
                     Create
-                  </button>
+                  </button></a>
                 </div>
                 <a className="more c-pointer d-inline-flex" href={() => false}>
                   <span><i className="bi bi-play-fill"></i></span>

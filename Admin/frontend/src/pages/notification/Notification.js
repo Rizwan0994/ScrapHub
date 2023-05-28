@@ -178,9 +178,10 @@ const Notification = () => {
   const dispatch = useDispatch();
 
   const [notification, setNotification] = useState(null);
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState({});
   const [showToggle, setShowToggle] = useState(false);
   const [sentUserIds, setSentUserIds] = useState([]);
+  
 
   useEffect(() => {
     async function getUserNotificationData() {
@@ -195,6 +196,10 @@ const Notification = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
+      if (!formData || !formData.userId) {
+        alert("Please enter a valid collector ID");
+        return;
+      }
       const response = await fetch("http://localhost:5000/api/notifycollectors", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -202,7 +207,7 @@ const Notification = () => {
       });
       console.log(response);
       //Reset form state
-      setFormData(null);
+      setFormData({});
       setShowToggle(false);
       //Add the sent user ID to the list
       setSentUserIds([...sentUserIds, formData.userId]);
@@ -211,7 +216,7 @@ const Notification = () => {
     } catch (error) {
       alert("Error sending Notification");
       console.error(error);
-
+  
     }
   };
 
@@ -306,16 +311,16 @@ const Notification = () => {
                     <label htmlFor="sDate">Set Date:</label>
                     {/* Added validation for sDate */}
                     <input
-                      type="date"
-                      id="sDate"
-                      name="sDate"
-                      value={
-                        n?.sDate &&
-                        !isNaN(Date.parse(n.sDate)) &&
-                        new Date(n.sDate).toISOString().substr(0, 10)
-                      }
-                      readOnly
-                    />
+  type="text"
+  id="sDate"
+  name="sDate"
+  value={
+    n?.sDate &&
+    /^\d{2}\/\d{2}\/\d{4}$/.test(n.sDate) && // check if sDate matches "dd/mm/yyyy" format
+    n.sDate.split('/').reverse().join('-') // convert "dd/mm/yyyy" to "yyyy-mm-dd"
+  }
+  readOnly
+/>
                     <label htmlFor="sTime">Set Time:</label>
                     {/* Added validation for sTime */}
 

@@ -9,6 +9,7 @@ const SuccessPage = () => {
       <p className="success-message">
         Your order has been successfully placed. Thank you for your business!
       </p>
+      <a href="/"><button>Click to go Back</button></a>
     </div>
   );
 };

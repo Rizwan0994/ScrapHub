@@ -2,10 +2,15 @@
 
 * {
   font-family: "Poppins", sans-serif;
+  
+}
+.product-page{
+
 }
 section {
   max-width: 1180px;
   margin: 0 auto;
+  
 }
 h1 {
   font-weight: 400;
@@ -15,7 +20,7 @@ h1 {
   margin: 4rem 0 0 0;
 }
 .list {
-  background: #fff;
+  background-color:  #1f2d3d;
   display: flex;
   flex-wrap: wrap;
   -webkit-box-pack: center;
